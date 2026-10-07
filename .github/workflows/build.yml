@@ -6,20 +6,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Android NDK
-        uses: nvida/setup-ndk@v1
+        uses: nkmrsh/setup-ndk@v1
         with:
           ndk-version: r21e
 
       - name: Compile mempodroid
         run: |
-          $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi16-clang \
+          $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi16-clang \
           -O2 -Wall mempodroid.c -o mempodroid -static
 
       - name: Upload Binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mempodroid-binary
           path: mempodroid
