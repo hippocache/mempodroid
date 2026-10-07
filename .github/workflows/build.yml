@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Android NDK
-        uses: nkmrsh/setup-ndk@v1
+        uses: android-actions/setup-ndk@v1
         with:
           ndk-version: r21e
 
