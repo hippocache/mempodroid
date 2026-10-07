@@ -1,0 +1,25 @@
+name: Build mempodroid
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Android NDK
+        uses: nvida/setup-ndk@v1
+        with:
+          ndk-version: r21e
+
+      - name: Compile mempodroid
+        run: |
+          $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi16-clang \
+          -O2 -Wall mempodroid.c -o mempodroid -static
+
+      - name: Upload Binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: mempodroid-binary
+          path: mempodroid
