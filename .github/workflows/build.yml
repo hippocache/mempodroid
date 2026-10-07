@@ -9,14 +9,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Android NDK
-        uses: android-actions/setup-ndk@v1
-        with:
-          ndk-version: r21e
+      - name: Download & Extract Android NDK r21e
+        run: |
+          wget -q https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip
+          unzip -q android-ndk-r21e-linux-x86_64.zip
 
       - name: Compile mempodroid
         run: |
-          $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi16-clang \
+          ./android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi16-clang \
           -O2 -Wall mempodroid.c -o mempodroid -static
 
       - name: Upload Binary
