@@ -1,6 +1,7 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
+#include <unistd.h>
 
 // Qualcomm Diag control code for memory operations
 #define DIAG_IOCTL_ALLOC          _IOWR(0x98, 0x00, struct diag_alloc_t)
