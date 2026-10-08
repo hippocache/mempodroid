@@ -27,9 +27,7 @@ jobs:
 
       - name: Compile diaggetroot
         run: |
-          ./android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin/clang \
-            -target armv7a-linux-androideabi14 \
-            --sysroot=./android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/sysroot \
+          ./android-ndk-r21e/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi16-clang \
             -O2 -Wall diaggetroot.c -o diaggetroot
 
       - name: Upload Binary
